@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "test": "",
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules src",
+    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src",
     "build": "tsc",
     "start": "node build/src",
     "lint": "eslint . --ext .ts",
