@@ -13,6 +13,11 @@ categoriesRoutes.get('/', (req: Request, res: Response) => {
 categoriesRoutes.post('/', (req: Request, res: Response) => {
   const { name, description } = req.body;
 
+  const isExistingCategory = categoriesRepository.findByName(name);
+  if (isExistingCategory) {
+    return res.status(400).json({ error: 'Nome de categoria já está sendo utilizado' });
+  }
+
   const category = categoriesRepository.create({ name, description });
 
   return res.status(201).json(category);
