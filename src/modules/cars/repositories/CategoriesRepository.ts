@@ -4,8 +4,17 @@ import { CategoriesRepositoryProps, CreateCategoryDtoProps } from './CategoriesR
 export class CategoriesRepository implements CategoriesRepositoryProps {
   private categories: Category[];
 
-  constructor() {
+  private static INSTANCE: CategoriesRepository;
+
+  private constructor() {
     this.categories = [];
+  }
+
+  public static getInstance() {
+    if (!CategoriesRepository.INSTANCE) {
+      CategoriesRepository.INSTANCE = new CategoriesRepository();
+    }
+    return CategoriesRepository.INSTANCE;
   }
 
   public list(): Category[] {
