@@ -1,5 +1,5 @@
 import { Category } from '../model/Category';
-import { CategoriesRepositoryProps, CreateCategoryDtoProps } from './CategoriesRepositoryProps';
+import { CategoriesRepositoryProps, CreateCategoryDtoProps } from '../repositories/CategoriesRepositoryProps';
 
 export class CategoriesRepository implements CategoriesRepositoryProps {
   private categories: Category[];

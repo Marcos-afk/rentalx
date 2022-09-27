@@ -1,5 +1,5 @@
 import { Specification } from '../model/Specifications';
-import { CreateSpecificationDto, SpecificationRepositoryProps } from './SpecificationRepositoryProps';
+import { CreateSpecificationDto, SpecificationRepositoryProps } from '../repositories/SpecificationRepositoryProps';
 
 export class SpecificationRepository implements SpecificationRepositoryProps {
   private specifications: Specification[];
