@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
-import { categoriesRoutes } from './routes/categories.router';
+import { categoriesRoutes } from './modules/cars/routes/categories.router';
 
 config();
 
