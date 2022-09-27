@@ -1,4 +1,4 @@
-import { CategoriesRepository } from '../repositories/CategoriesRepository';
+import { CategoriesRepositoryProps } from '../repositories/CategoriesRepositoryProps';
 
 interface RequestProps {
   name: string;
@@ -6,7 +6,7 @@ interface RequestProps {
 }
 
 export class CreateCategoryService {
-  constructor(private categoriesRepository: CategoriesRepository) {}
+  constructor(private categoriesRepository: CategoriesRepositoryProps) {}
 
   public execute({ name, description }: RequestProps) {
     const isExistingCategory = this.categoriesRepository.findByName(name);

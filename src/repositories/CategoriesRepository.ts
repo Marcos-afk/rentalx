@@ -1,26 +1,22 @@
 import { Category } from '../model/Category';
+import { CategoriesRepositoryProps, CreateCategoryDtoProps } from './CategoriesRepositoryProps';
 
-interface CreateCategoryDtoProps {
-  name: string;
-  description: string;
-}
-
-export class CategoriesRepository {
+export class CategoriesRepository implements CategoriesRepositoryProps {
   private categories: Category[];
 
   constructor() {
     this.categories = [];
   }
 
-  public list() {
+  public list(): Category[] {
     return this.categories;
   }
 
-  public findByName(name: string) {
+  public findByName(name: string): Category | undefined {
     return this.categories.find(category => category.name === name);
   }
 
-  public create({ name, description }: CreateCategoryDtoProps) {
+  create({ name, description }: CreateCategoryDtoProps): Category {
     const category = new Category();
     Object.assign(category, { name, description, created_at: new Date() });
     this.categories.push(category);
