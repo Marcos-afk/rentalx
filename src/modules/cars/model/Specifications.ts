@@ -1,6 +1,6 @@
 import { v4 as uuidV4 } from 'uuid';
 
-export class Specifications {
+export class Specification {
   id?: string;
   name: string;
   description: string;

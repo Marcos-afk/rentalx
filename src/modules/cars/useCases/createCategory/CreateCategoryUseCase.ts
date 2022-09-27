@@ -1,11 +1,11 @@
-import { CategoriesRepositoryProps } from '../repositories/CategoriesRepositoryProps';
+import { CategoriesRepositoryProps } from '../../repositories/CategoriesRepositoryProps';
 
 interface RequestProps {
   name: string;
   description: string;
 }
 
-export class CreateCategoryService {
+export class CreateCategoryUseCase {
   constructor(private categoriesRepository: CategoriesRepositoryProps) {}
 
   public execute({ name, description }: RequestProps) {
