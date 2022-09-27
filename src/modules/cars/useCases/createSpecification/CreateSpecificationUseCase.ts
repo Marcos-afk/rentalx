@@ -1,11 +1,11 @@
-import { SpecificationRepositoryProps } from '../repositories/SpecificationRepositoryProps';
+import { SpecificationRepositoryProps } from '../../repositories/SpecificationRepositoryProps';
 
 interface RequestProps {
   name: string;
   description: string;
 }
 
-export class CreateSpecificationService {
+export class CreateSpecificationUseCase {
   constructor(private specificationRepository: SpecificationRepositoryProps) {}
 
   public execute({ name, description }: RequestProps) {

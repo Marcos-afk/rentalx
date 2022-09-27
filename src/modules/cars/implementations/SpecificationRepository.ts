@@ -3,8 +3,22 @@ import { CreateSpecificationDto, SpecificationRepositoryProps } from '../reposit
 
 export class SpecificationRepository implements SpecificationRepositoryProps {
   private specifications: Specification[];
-  constructor() {
+
+  private static INSTANCE: SpecificationRepository;
+
+  private constructor() {
     this.specifications = [];
+  }
+
+  public static getInstance() {
+    if (!SpecificationRepository.INSTANCE) {
+      SpecificationRepository.INSTANCE = new SpecificationRepository();
+    }
+    return SpecificationRepository.INSTANCE;
+  }
+
+  list(): Specification[] {
+    return this.specifications;
   }
 
   findByName(name: string): Specification | undefined {
