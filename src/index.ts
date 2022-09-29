@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import { config } from 'dotenv';
 import { Routes } from './modules/routes';
+import swaggerUi from 'swagger-ui-express';
+import swaggerFile from '../swagger.json';
 
 config();
 
@@ -10,7 +12,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(Routes);
 
 const PORT = process.env.PORT;
