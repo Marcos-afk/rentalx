@@ -4,10 +4,12 @@ import { config } from 'dotenv';
 import { Routes } from './modules/routes';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from '../swagger.json';
+import { InitializeConnection } from './database';
 
 config();
 
 const app = express();
+InitializeConnection();
 
 app.use(cors());
 app.use(express.json());
