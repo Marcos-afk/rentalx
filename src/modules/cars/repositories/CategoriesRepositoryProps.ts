@@ -1,4 +1,4 @@
-import { Category } from '../model/Category';
+import { Category } from '../entities/Category';
 
 export interface CreateCategoryDtoProps {
   name: string;
@@ -6,7 +6,7 @@ export interface CreateCategoryDtoProps {
 }
 
 export interface CategoriesRepositoryProps {
-  list(): Category[];
-  findByName(name: string): Category | undefined;
-  create({ name, description }: CreateCategoryDtoProps): Category;
+  list(): Promise<Category[]>;
+  findByName(name: string): Promise<Category | null>;
+  create({ name, description }: CreateCategoryDtoProps): Promise<Category>;
 }

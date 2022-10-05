@@ -3,8 +3,8 @@ import { CategoriesRepositoryProps } from '../../repositories/CategoriesReposito
 export class ListCategoriesUseCase {
   constructor(private categoriesRepository: CategoriesRepositoryProps) {}
 
-  public execute() {
-    const categories = this.categoriesRepository.list();
+  public async execute() {
+    const categories = await this.categoriesRepository.list();
     return categories;
   }
 }

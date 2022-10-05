@@ -6,6 +6,7 @@
   "scripts": {
     "test": "",
     "dev": "ts-node-dev --poll --inspect --transpile-only --ignore-watch node_modules --respawn src",
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "build": "tsc",
     "start": "node build/src",
     "lint": "eslint . --ext .ts",

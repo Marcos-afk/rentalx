@@ -1,4 +1,4 @@
-import { Specification } from '../model/Specifications';
+import { Specification } from '../entities/Specifications';
 import { CreateSpecificationDto, SpecificationRepositoryProps } from '../repositories/SpecificationRepositoryProps';
 
 export class SpecificationRepository implements SpecificationRepositoryProps {

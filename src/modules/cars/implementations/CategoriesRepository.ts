@@ -1,13 +1,15 @@
-import { Category } from '../model/Category';
+import { Repository } from 'typeorm';
+import { AppSource } from '../../../database';
+import { Category } from '../entities/Category';
 import { CategoriesRepositoryProps, CreateCategoryDtoProps } from '../repositories/CategoriesRepositoryProps';
 
 export class CategoriesRepository implements CategoriesRepositoryProps {
-  private categories: Category[];
+  private categories: Repository<Category>;
 
   private static INSTANCE: CategoriesRepository;
 
   private constructor() {
-    this.categories = [];
+    this.categories = AppSource.getRepository(Category);
   }
 
   public static getInstance() {
@@ -17,18 +19,17 @@ export class CategoriesRepository implements CategoriesRepositoryProps {
     return CategoriesRepository.INSTANCE;
   }
 
-  public list(): Category[] {
-    return this.categories;
+  public async list(): Promise<Category[]> {
+    return await this.categories.find();
   }
 
-  public findByName(name: string): Category | undefined {
-    return this.categories.find(category => category.name === name);
+  public async findByName(name: string): Promise<Category | null> {
+    return await this.categories.findOneBy({ name });
   }
 
-  create({ name, description }: CreateCategoryDtoProps): Category {
-    const category = new Category();
-    Object.assign(category, { name, description, created_at: new Date() });
-    this.categories.push(category);
+  async create({ name, description }: CreateCategoryDtoProps): Promise<Category> {
+    const category = this.categories.create({ name, description });
+    await this.categories.save(category);
     return category;
   }
 }
