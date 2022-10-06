@@ -6,13 +6,13 @@ import { UsersRepositoryProps } from '../../repositories/UsersRepositoryProps';
 export class CreateUserUseCase {
   constructor(@inject('UsersRepository') private usersRepository: UsersRepositoryProps) {}
 
-  public async execute({ name, username, password, email, driver_license }: CreateUserDtoProps) {
-    const isExistingUser = await this.usersRepository.findByUsername(username);
+  public async execute({ name, password, email, driver_license }: CreateUserDtoProps) {
+    const isExistingUser = await this.usersRepository.findByEmail(email);
     if (isExistingUser) {
-      throw new Error('Username já está sendo utilizado');
+      throw new Error('Email já está sendo utilizado');
     }
 
-    const user = await this.usersRepository.create({ name, username, password, email, driver_license });
+    const user = await this.usersRepository.create({ name, password, email, driver_license });
     return user;
   }
 }
