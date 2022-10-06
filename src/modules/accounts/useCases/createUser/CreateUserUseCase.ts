@@ -1,3 +1,4 @@
+import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
 import { CreateUserDtoProps } from '../../dtos/CreateUserDtoProps';
 import { UsersRepositoryProps } from '../../repositories/UsersRepositoryProps';
@@ -12,7 +13,9 @@ export class CreateUserUseCase {
       throw new Error('Email já está sendo utilizado');
     }
 
-    const user = await this.usersRepository.create({ name, password, email, driver_license });
+    const hashPassword = await hash(password, 8);
+
+    const user = await this.usersRepository.create({ name, password: hashPassword, email, driver_license });
     return user;
   }
 }
