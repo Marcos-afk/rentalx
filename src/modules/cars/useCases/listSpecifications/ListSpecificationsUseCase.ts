@@ -5,8 +5,8 @@ import { SpecificationRepositoryProps } from '../../repositories/SpecificationRe
 export class ListSpecificationsUseCase {
   constructor(@inject('SpecificationRepository') private specificationRepository: SpecificationRepositoryProps) {}
 
-  public execute() {
-    const specifications = this.specificationRepository.list();
+  public async execute() {
+    const specifications = await this.specificationRepository.list();
     return specifications;
   }
 }

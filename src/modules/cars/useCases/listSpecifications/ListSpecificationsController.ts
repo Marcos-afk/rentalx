@@ -3,10 +3,10 @@ import { ListSpecificationsUseCase } from './ListSpecificationsUseCase';
 import { container } from 'tsyringe';
 
 export class ListSpecificationsController {
-  public handle(req: Request, res: Response) {
+  public async handle(req: Request, res: Response) {
     const listSpecificationsUseCase = container.resolve(ListSpecificationsUseCase);
 
-    const specifications = listSpecificationsUseCase.execute();
+    const specifications = await listSpecificationsUseCase.execute();
     return res.status(200).json(specifications);
   }
 }

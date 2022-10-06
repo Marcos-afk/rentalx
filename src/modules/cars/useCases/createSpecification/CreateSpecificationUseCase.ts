@@ -10,13 +10,13 @@ interface RequestProps {
 export class CreateSpecificationUseCase {
   constructor(@inject('SpecificationRepository') private specificationRepository: SpecificationRepositoryProps) {}
 
-  public execute({ name, description }: RequestProps) {
-    const isExistingSpecification = this.specificationRepository.findByName(name);
+  public async execute({ name, description }: RequestProps) {
+    const isExistingSpecification = await this.specificationRepository.findByName(name);
     if (isExistingSpecification) {
       throw new Error('Nome de especificação já está sendo utilizado');
     }
 
-    const specification = this.specificationRepository.create({ name, description });
+    const specification = await this.specificationRepository.create({ name, description });
     return specification;
   }
 }

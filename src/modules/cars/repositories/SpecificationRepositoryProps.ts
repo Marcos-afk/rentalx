@@ -6,7 +6,7 @@ export interface CreateSpecificationDto {
 }
 
 export interface SpecificationRepositoryProps {
-  list(): Specification[];
-  findByName(name: string): Specification | undefined;
-  create({ name, description }: CreateSpecificationDto): Specification;
+  list(): Promise<Specification[]>;
+  findByName(name: string): Promise<Specification | null>;
+  create({ name, description }: CreateSpecificationDto): Promise<Specification>;
 }
