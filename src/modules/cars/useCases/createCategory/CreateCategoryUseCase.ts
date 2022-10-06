@@ -1,3 +1,4 @@
+import { injectable, inject } from 'tsyringe';
 import { CategoriesRepositoryProps } from '../../repositories/CategoriesRepositoryProps';
 
 interface RequestProps {
@@ -5,8 +6,9 @@ interface RequestProps {
   description: string;
 }
 
+@injectable()
 export class CreateCategoryUseCase {
-  constructor(private categoriesRepository: CategoriesRepositoryProps) {}
+  constructor(@inject('CategoriesRepository') private categoriesRepository: CategoriesRepositoryProps) {}
 
   public async execute({ name, description }: RequestProps) {
     const isExistingCategory = await this.categoriesRepository.findByName(name);

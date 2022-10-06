@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { ImportCategoryUseCase } from './ImportCategoryUseCase';
+import { container } from 'tsyringe';
 
 export class ImportCategoryController {
-  constructor(private importCategoryUseCase: ImportCategoryUseCase) {}
   public handle(req: Request, res: Response) {
     const { file } = req;
 
@@ -10,7 +10,9 @@ export class ImportCategoryController {
       throw new Error('Arquivo não encontrado');
     }
 
-    this.importCategoryUseCase.execute(file);
+    const importCategoryUseCase = container.resolve(ImportCategoryUseCase);
+
+    importCategoryUseCase.execute(file);
     return res.status(201).json({ message: 'Categorias importadas com sucesso!' });
   }
 }

@@ -6,6 +6,7 @@ import { Routes } from './modules/routes';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from '../swagger.json';
 import { InitializeConnection } from './database';
+import './shared/container';
 
 config();
 

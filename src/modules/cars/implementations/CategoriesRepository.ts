@@ -6,17 +6,8 @@ import { CategoriesRepositoryProps, CreateCategoryDtoProps } from '../repositori
 export class CategoriesRepository implements CategoriesRepositoryProps {
   private categories: Repository<Category>;
 
-  private static INSTANCE: CategoriesRepository;
-
-  private constructor() {
+  constructor() {
     this.categories = AppSource.getRepository(Category);
-  }
-
-  public static getInstance() {
-    if (!CategoriesRepository.INSTANCE) {
-      CategoriesRepository.INSTANCE = new CategoriesRepository();
-    }
-    return CategoriesRepository.INSTANCE;
   }
 
   public async list(): Promise<Category[]> {
