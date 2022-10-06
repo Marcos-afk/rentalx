@@ -1,3 +1,4 @@
+import { injectable, inject } from 'tsyringe';
 import { SpecificationRepositoryProps } from '../../repositories/SpecificationRepositoryProps';
 
 interface RequestProps {
@@ -5,8 +6,9 @@ interface RequestProps {
   description: string;
 }
 
+@injectable()
 export class CreateSpecificationUseCase {
-  constructor(private specificationRepository: SpecificationRepositoryProps) {}
+  constructor(@inject('SpecificationRepository') private specificationRepository: SpecificationRepositoryProps) {}
 
   public execute({ name, description }: RequestProps) {
     const isExistingSpecification = this.specificationRepository.findByName(name);
