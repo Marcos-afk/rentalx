@@ -20,4 +20,8 @@ export class UsersRepository implements UsersRepositoryProps {
   public async findByEmail(email: string): Promise<User | null> {
     return await this.users.findOneBy({ email });
   }
+
+  public async findById(id: string): Promise<User | null> {
+    return await this.users.findOneBy({ id });
+  }
 }
