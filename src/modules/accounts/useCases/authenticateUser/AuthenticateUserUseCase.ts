@@ -1,6 +1,7 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
+import { AppError } from '../../../../errors/AppError';
 import { UsersRepositoryProps } from '../../repositories/UsersRepositoryProps';
 
 interface RequestProps {
@@ -23,12 +24,12 @@ export class AuthenticateUserUseCase {
   public async execute({ email, password }: RequestProps): Promise<Response> {
     const user = await this.usersRepository.findByEmail(email);
     if (!user) {
-      throw new Error('Email ou senha incorreto');
+      throw new AppError('Email ou senha incorreto');
     }
 
     const passwordIsValid = await compare(password, user.password);
     if (!passwordIsValid) {
-      throw new Error('Email ou senha incorreto');
+      throw new AppError('Email ou senha incorreto');
     }
 
     const token = sign({}, process.env.JWT_KEY as string, {

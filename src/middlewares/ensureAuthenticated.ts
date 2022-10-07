@@ -1,6 +1,7 @@
 import { verify } from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import { UsersRepository } from '../modules/accounts/implementations/UsersRepository';
+import { AppError } from '../errors/AppError';
 
 interface TokenPayloadProps {
   iat: number;
@@ -11,7 +12,7 @@ interface TokenPayloadProps {
 export const ensureAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
   if (!authHeader) {
-    throw new Error('Sem token.');
+    throw new AppError('Sem token', 404);
   }
 
   const [, token] = authHeader.split(' ');
@@ -23,13 +24,13 @@ export const ensureAuthenticated = async (req: Request, res: Response, next: Nex
     const usersRepository = new UsersRepository();
     const user = await usersRepository.findById(sub);
     if (!user) {
-      throw new Error('Usuário não encontrado');
+      throw new AppError('Usuário não encontrado', 404);
     }
 
     return next();
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(`Ocorreu um erro: ${error.message}`);
+      throw new AppError(`Ocorreu um erro: ${error.message}`);
     }
   }
 };

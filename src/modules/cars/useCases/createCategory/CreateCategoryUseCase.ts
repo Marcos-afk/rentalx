@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe';
+import { AppError } from '../../../../errors/AppError';
 import { CategoriesRepositoryProps } from '../../repositories/CategoriesRepositoryProps';
 
 interface RequestProps {
@@ -13,7 +14,7 @@ export class CreateCategoryUseCase {
   public async execute({ name, description }: RequestProps) {
     const isExistingCategory = await this.categoriesRepository.findByName(name);
     if (isExistingCategory) {
-      throw new Error('Nome de categoria já está sendo utilizado');
+      throw new AppError('Nome de categoria inválido');
     }
 
     const category = await this.categoriesRepository.create({ name, description });

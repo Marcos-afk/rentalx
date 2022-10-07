@@ -1,4 +1,5 @@
 import { injectable, inject } from 'tsyringe';
+import { AppError } from '../../../../errors/AppError';
 import { SpecificationRepositoryProps } from '../../repositories/SpecificationRepositoryProps';
 
 interface RequestProps {
@@ -13,7 +14,7 @@ export class CreateSpecificationUseCase {
   public async execute({ name, description }: RequestProps) {
     const isExistingSpecification = await this.specificationRepository.findByName(name);
     if (isExistingSpecification) {
-      throw new Error('Nome de especificação já está sendo utilizado');
+      throw new AppError('Nome de especificação inválido');
     }
 
     const specification = await this.specificationRepository.create({ name, description });
