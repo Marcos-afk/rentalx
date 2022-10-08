@@ -27,6 +27,10 @@ export const ensureAuthenticated = async (req: Request, res: Response, next: Nex
       throw new AppError('Usuário não encontrado', 404);
     }
 
+    req.user = {
+      id: user.id,
+    };
+
     return next();
   } catch (error) {
     if (error instanceof Error) {

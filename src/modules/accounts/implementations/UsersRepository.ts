@@ -24,4 +24,9 @@ export class UsersRepository implements UsersRepositoryProps {
   public async findById(id: string): Promise<User | null> {
     return await this.users.findOneBy({ id });
   }
+
+  public async save(user: User): Promise<User> {
+    await this.users.save(user);
+    return user;
+  }
 }
