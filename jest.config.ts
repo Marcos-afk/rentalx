@@ -8,4 +8,5 @@ module.exports = {
   coverageProvider: 'v8',
   clearMocks: true,
   bail: true,
+  setupFiles: ['dotenv/config'],
 };

@@ -1,9 +1,7 @@
 import { UsersRepositoryInMemory } from '../../in-memory/UsersRepositoryInMemory';
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase';
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
-import { config } from 'dotenv';
 import { AppError } from '../../../../errors/AppError';
-config();
 
 let authenticateUserCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
