@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { ImportCategoryUseCase } from './ImportCategoryUseCase';
 import { container } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '../../../../shared/errors/AppError';
 
 export class ImportCategoryController {
   public async handle(req: Request, res: Response) {

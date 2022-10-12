@@ -1,5 +1,5 @@
 import { CreateUserDtoProps } from '../dtos/CreateUserDtoProps';
-import { User } from '../entities/User';
+import { User } from '../infra/typeorm/entities/User';
 
 export interface UsersRepositoryProps {
   create(createUserDto: CreateUserDtoProps): Promise<User>;

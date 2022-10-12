@@ -5,10 +5,10 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
-    "dev": "ts-node-dev --poll --inspect --transpile-only --ignore-watch node_modules --respawn src",
+    "dev": "ts-node-dev --poll --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
     "build": "tsc",
-    "start": "node build/src",
+    "start": "node build/src/shared/infra/http",
     "lint": "eslint . --ext .ts",
     "lint-fix": "eslint . --ext .ts --fix"
   },

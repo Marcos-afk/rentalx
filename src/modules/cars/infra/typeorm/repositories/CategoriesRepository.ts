@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
-import { AppSource } from '../../../database';
+import { AppSource } from '../../../../../shared/infra/typeorm';
+import { CategoriesRepositoryProps, CreateCategoryDtoProps } from '../../../repositories/CategoriesRepositoryProps';
 import { Category } from '../entities/Category';
-import { CategoriesRepositoryProps, CreateCategoryDtoProps } from '../repositories/CategoriesRepositoryProps';
 
 export class CategoriesRepository implements CategoriesRepositoryProps {
   private categories: Repository<Category>;

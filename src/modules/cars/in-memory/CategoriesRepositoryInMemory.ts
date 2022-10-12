@@ -1,4 +1,4 @@
-import { Category } from '../entities/Category';
+import { Category } from '../infra/typeorm/entities/Category';
 import { CategoriesRepositoryProps, CreateCategoryDtoProps } from '../repositories/CategoriesRepositoryProps';
 
 export class CategoriesRepositoryInMemory implements CategoriesRepositoryProps {

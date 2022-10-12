@@ -13,7 +13,7 @@ export const AppSource = new DataSource({
   synchronize: false,
   logging: false,
   migrations: ['./src/database/migrations/*.ts'],
-  entities: ['./src/modules/**/entities/*.ts'],
+  entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
 });
 
 export const InitializeConnection = (host = process.env.POSTGRES_HOST) => {

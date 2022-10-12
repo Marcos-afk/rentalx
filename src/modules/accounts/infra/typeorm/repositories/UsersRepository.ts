@@ -1,8 +1,8 @@
 import { Repository } from 'typeorm';
-import { AppSource } from '../../../database';
-import { CreateUserDtoProps } from '../dtos/CreateUserDtoProps';
+import { AppSource } from '../../../../../shared/infra/typeorm';
+import { CreateUserDtoProps } from '../../../dtos/CreateUserDtoProps';
 import { User } from '../entities/User';
-import { UsersRepositoryProps } from '../repositories/UsersRepositoryProps';
+import { UsersRepositoryProps } from '../../../repositories/UsersRepositoryProps';
 
 export class UsersRepository implements UsersRepositoryProps {
   private users: Repository<User>;

@@ -1,7 +1,7 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 import { inject, injectable } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '../../../../shared/errors/AppError';
 import { UsersRepositoryProps } from '../../repositories/UsersRepositoryProps';
 
 interface RequestProps {

@@ -1,5 +1,5 @@
 import { CreateUserDtoProps } from '../dtos/CreateUserDtoProps';
-import { User } from '../entities/User';
+import { User } from '../infra/typeorm/entities/User';
 import { UsersRepositoryProps } from '../repositories/UsersRepositoryProps';
 
 export class UsersRepositoryInMemory implements UsersRepositoryProps {

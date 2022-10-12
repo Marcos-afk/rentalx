@@ -1,7 +1,10 @@
 import { Repository } from 'typeorm';
-import { AppSource } from '../../../database';
+import { AppSource } from '../../../../../shared/infra/typeorm';
 import { Specification } from '../entities/Specifications';
-import { CreateSpecificationDto, SpecificationRepositoryProps } from '../repositories/SpecificationRepositoryProps';
+import {
+  CreateSpecificationDto,
+  SpecificationRepositoryProps,
+} from '../../../repositories/SpecificationRepositoryProps';
 
 export class SpecificationRepository implements SpecificationRepositoryProps {
   private specifications: Repository<Specification>;

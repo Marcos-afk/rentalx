@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '../../../../shared/errors/AppError';
 import { SpecificationRepositoryProps } from '../../repositories/SpecificationRepositoryProps';
 
 interface RequestProps {

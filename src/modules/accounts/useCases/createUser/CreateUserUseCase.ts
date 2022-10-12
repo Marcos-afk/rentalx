@@ -1,6 +1,6 @@
 import { hash } from 'bcryptjs';
 import { inject, injectable } from 'tsyringe';
-import { AppError } from '../../../../errors/AppError';
+import { AppError } from '../../../../shared/errors/AppError';
 import { CreateUserDtoProps } from '../../dtos/CreateUserDtoProps';
 import { UsersRepositoryProps } from '../../repositories/UsersRepositoryProps';
 
