@@ -1,4 +1,4 @@
-//import { inject, injectable } from 'tsyringe';
+import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../shared/errors/AppError';
 import { CarsRepositoryProps } from '../../repositories/CarsRepositoriesProps';
 
@@ -12,11 +12,9 @@ interface RequestProps {
   description: string;
 }
 
-//@injectable()
+@injectable()
 export class CreateCarUseCase {
-  constructor(
-    /*@inject('CarsRepository') private CategoriesRepository: CarsRepositoryProps*/ private CategoriesRepository: CarsRepositoryProps,
-  ) {}
+  constructor(@inject('CarsRepository') private CategoriesRepository: CarsRepositoryProps) {}
 
   public async execute({
     name,
