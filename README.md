@@ -34,13 +34,10 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 **RF** => Requisitos funcionais
 
 - Deve ser possível cadastrar um novo carro.
-- Deve ser possível listar todas as categorias.
 
 **RN** => Regras de negócio
 
 - Não deve ser possível cadastrar um carro com uma placa já existente.
-
-- Não deve ser possível alterar a placa de um carro já cadastrado.
 
 - O carro deve ser cadastrado, por padrão, disponível.
 
