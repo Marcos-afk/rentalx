@@ -10,7 +10,8 @@
     "build": "tsc",
     "start": "node build/src/shared/infra/http",
     "lint": "eslint . --ext .ts",
-    "lint-fix": "eslint . --ext .ts --fix"
+    "lint-fix": "eslint . --ext .ts --fix",
+    "seed": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
