@@ -73,7 +73,6 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 **RF** => Requisitos funcionais
 
 - Deve ser possível cadastrar a imagem do carro.
-- Deve ser possível todos os carros.
 
 **RNF** => Requisitos não funcionais
 
