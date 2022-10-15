@@ -9,10 +9,12 @@ export class CreateSpecificationsCars1665810488274 implements MigrationInterface
           {
             name: 'car_id',
             type: 'uuid',
+            isPrimary: true,
           },
           {
             name: 'specification_id',
             type: 'uuid',
+            isPrimary: true,
           },
           {
             name: 'created_at',
