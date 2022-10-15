@@ -9,6 +9,25 @@ export class CarsRepository implements CarsRepositoryProps {
     this.cars = AppSource.getRepository(Cars);
   }
 
+  async list(category_id?: string, name?: string, brand?: string): Promise<Cars[]> {
+    const carsQuery = this.cars.createQueryBuilder('car').where('available = :available', { available: true });
+
+    if (category_id) {
+      carsQuery.andWhere('category_id = :category_id', { category_id });
+    }
+
+    if (brand) {
+      carsQuery.andWhere('brand = :brand', { brand });
+    }
+
+    if (name) {
+      carsQuery.andWhere('name = :name', { name });
+    }
+
+    const cars = await carsQuery.getMany();
+    return cars;
+  }
+
   async create(createCar: CreateCarDtoProps): Promise<Cars> {
     const car = this.cars.create(createCar);
     await this.cars.save(car);

@@ -4,6 +4,21 @@ import { CarsRepositoryProps, CreateCarDtoProps } from '../repositories/CarsRepo
 export class CarsRepositoryInMemory implements CarsRepositoryProps {
   private cars: Cars[] = [];
 
+  async list(category_id?: string, name?: string, brand?: string): Promise<Cars[]> {
+    const cars = this.cars.filter(car => {
+      if (
+        car.available === true ||
+        (category_id && car.category_id === category_id) ||
+        (brand && car.brand === brand) ||
+        (name && car.name === name)
+      ) {
+        return car;
+      }
+    });
+
+    return cars;
+  }
+
   async create({
     name,
     daily_rate,
