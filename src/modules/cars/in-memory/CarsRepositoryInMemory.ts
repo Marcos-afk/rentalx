@@ -51,4 +51,19 @@ export class CarsRepositoryInMemory implements CarsRepositoryProps {
 
     return car;
   }
+
+  async findById(id: string): Promise<Cars | null> {
+    const car = this.cars.find(car => car.id === id);
+    if (!car) {
+      return null;
+    }
+
+    return car;
+  }
+
+  async save(car: Cars): Promise<Cars> {
+    const index = this.cars.findIndex(c => c.id === car.id);
+    this.cars[index] = car;
+    return car;
+  }
 }

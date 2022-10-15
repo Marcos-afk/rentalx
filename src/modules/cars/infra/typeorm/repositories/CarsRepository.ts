@@ -9,6 +9,10 @@ export class CarsRepository implements CarsRepositoryProps {
     this.cars = AppSource.getRepository(Cars);
   }
 
+  async findById(id: string): Promise<Cars | null> {
+    return await this.cars.findOneBy({ id });
+  }
+
   async list(category_id?: string, name?: string, brand?: string): Promise<Cars[]> {
     const carsQuery = this.cars.createQueryBuilder('car').where('available = :available', { available: true });
 
@@ -34,7 +38,12 @@ export class CarsRepository implements CarsRepositoryProps {
     return car;
   }
 
-  findByLicensePlate(license_plate: string): Promise<Cars | null> {
-    return this.cars.findOneBy({ license_plate });
+  async findByLicensePlate(license_plate: string): Promise<Cars | null> {
+    return await this.cars.findOneBy({ license_plate });
+  }
+
+  async save(car: Cars): Promise<Cars> {
+    await this.cars.save(car);
+    return car;
   }
 }

@@ -61,9 +61,6 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 **RF** => Requisitos funcionais
 
 - Deve ser possível cadastrar uma especificação para um carro.
-- Deve ser possível listar todas as especificações.
-- Deve ser possível listar todos os carros.
-- Apenas usuários admin podem realizar o cadastro.
 
 **RN** => Regras de negócio
 

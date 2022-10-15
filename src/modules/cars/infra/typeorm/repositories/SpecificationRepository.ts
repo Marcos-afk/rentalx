@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { AppSource } from '../../../../../shared/infra/typeorm';
 import { Specification } from '../entities/Specifications';
 import {
@@ -19,6 +19,10 @@ export class SpecificationRepository implements SpecificationRepositoryProps {
 
   public async findByName(name: string): Promise<Specification | null> {
     return await this.specifications.findOneBy({ name });
+  }
+
+  public async findByIds(ids: string[]): Promise<Specification[]> {
+    return await this.specifications.findBy({ id: In(ids) });
   }
 
   public async create({ name, description }: CreateSpecificationDto): Promise<Specification> {

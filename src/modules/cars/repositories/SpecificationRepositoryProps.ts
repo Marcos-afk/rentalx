@@ -9,4 +9,5 @@ export interface SpecificationRepositoryProps {
   list(): Promise<Specification[]>;
   findByName(name: string): Promise<Specification | null>;
   create({ name, description }: CreateSpecificationDto): Promise<Specification>;
+  findByIds(ids: string[]): Promise<Specification[]>;
 }
