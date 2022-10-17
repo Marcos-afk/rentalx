@@ -9,9 +9,15 @@ import { CarsImagesRepositoryProps } from '../../modules/cars/repositories/CarsI
 import { CarsRepositoryProps } from '../../modules/cars/repositories/CarsRepositoriesProps';
 import { CategoriesRepositoryProps } from '../../modules/cars/repositories/CategoriesRepositoryProps';
 import { SpecificationRepositoryProps } from '../../modules/cars/repositories/SpecificationRepositoryProps';
+import { RentalsRepository } from '../../modules/rentals/infra/typeorm/repositories/RentalsRepository';
+import { RentalsRepositoryProps } from '../../modules/rentals/repositories/RentalsRepositoryProps';
+import { DateProviderProps } from '../providers/DateProvider/DateProviderProps';
+import { DayJsDateProvider } from '../providers/DateProvider/implementations/DayJsDateProvider';
 
 container.registerSingleton<CategoriesRepositoryProps>('CategoriesRepository', CategoriesRepository);
 container.registerSingleton<SpecificationRepositoryProps>('SpecificationRepository', SpecificationRepository);
 container.registerSingleton<UsersRepositoryProps>('UsersRepository', UsersRepository);
 container.registerSingleton<CarsRepositoryProps>('CarsRepository', CarsRepository);
 container.registerSingleton<CarsImagesRepositoryProps>('CarsImagesRepository', CarsImagesRepository);
+container.registerSingleton<DateProviderProps>('DateProvider', DayJsDateProvider);
+container.registerSingleton<RentalsRepositoryProps>('RentalsRepository', RentalsRepository);
