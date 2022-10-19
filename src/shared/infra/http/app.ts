@@ -36,8 +36,4 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Servidor rodando na url/porta: ${PORT}`);
-});
+export { app };

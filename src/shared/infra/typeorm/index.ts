@@ -16,6 +16,8 @@ export const AppSource = new DataSource({
   entities: ['./src/modules/**/infra/typeorm/entities/*.ts'],
 });
 
-export const InitializeConnection = (host = process.env.POSTGRES_HOST) => {
-  return AppSource.setOptions({ host }).initialize();
+export const InitializeConnection = () => {
+  const host = process.env.NODE_ENV === 'test' ? 'localhost' : process.env.HOST;
+  const database = process.env.NODE_ENV === 'test' ? 'rentalx_test' : process.env.POSTGRES_DB;
+  return AppSource.setOptions({ host, database }).initialize();
 };

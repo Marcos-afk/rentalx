@@ -6,6 +6,7 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs)
 - [cors](https://www.npmjs.com/package/cors)
+- [cross-env](https://www.npmjs.com/package/cross-env)
 - [csv-parse](https://www.npmjs.com/package/csv-parse)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [docker](https://docs.docker.com/)
@@ -16,6 +17,7 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [multer](https://www.npmjs.com/package/multer)
 - [nodejs](https://nodejs.org/en/docs/)
+- [supertest](https://www.npmjs.com/package/supertest)
 - [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
 - [typescript](https://www.typescriptlang.org/)
 - [tsyringe](https://www.npmjs.com/package/tsyringe)
