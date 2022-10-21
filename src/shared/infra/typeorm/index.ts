@@ -17,7 +17,7 @@ export const AppSource = new DataSource({
 });
 
 export const InitializeConnection = () => {
-  const host = process.env.NODE_ENV === 'test' ? 'localhost' : process.env.HOST;
+  const host = process.env.NODE_ENV === 'test' ? 'localhost' : process.env.POSTGRES_HOST;
   const database = process.env.NODE_ENV === 'test' ? 'rentalx_test' : process.env.POSTGRES_DB;
   return AppSource.setOptions({ host, database }).initialize();
 };
