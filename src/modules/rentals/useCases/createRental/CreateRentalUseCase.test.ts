@@ -3,9 +3,11 @@ import { RentalsRepositoryInMemory } from '../../in-memory/RentalsRepositoryInMe
 import { CreateRentalUseCase } from './CreateRentalUseCase';
 import dayjs from 'dayjs';
 import { DayJsDateProvider } from '../../../../shared/providers/DateProvider/implementations/DayJsDateProvider';
+import { CarsRepositoryInMemory } from '../../../cars/in-memory/CarsRepositoryInMemory';
 
 let createRentalUseCase: CreateRentalUseCase;
 let rentalRepositoryInMemory: RentalsRepositoryInMemory;
+let carsRepositoryInMemory: CarsRepositoryInMemory;
 let dateProvider: DayJsDateProvider;
 
 describe('Create rental', () => {
@@ -14,13 +16,24 @@ describe('Create rental', () => {
   beforeEach(() => {
     rentalRepositoryInMemory = new RentalsRepositoryInMemory();
     dateProvider = new DayJsDateProvider();
-    createRentalUseCase = new CreateRentalUseCase(rentalRepositoryInMemory, dateProvider);
+    carsRepositoryInMemory = new CarsRepositoryInMemory();
+    createRentalUseCase = new CreateRentalUseCase(rentalRepositoryInMemory, dateProvider, carsRepositoryInMemory);
   });
 
   it('should be able to create a new rental', async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: 'Toyota Land Cruiser',
+      daily_rate: 600,
+      license_plate: 'xxx-xxy',
+      fine_amount: 40,
+      brand: 'brand',
+      category_id: '9952ce99-8c27-4114-bdba-4b0a03a3cb61',
+      description: 'Jipe toyota land cruiser',
+    });
+
     const rental = {
       user_id: 'userId',
-      car_id: 'carId',
+      car_id: car.id as string,
       expected_return_date: dayAdd24Yours,
     };
 

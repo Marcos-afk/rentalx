@@ -1,6 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../shared/errors/AppError';
 import { DateProviderProps } from '../../../../shared/providers/DateProvider/DateProviderProps';
+import { CarsRepositoryProps } from '../../../cars/repositories/CarsRepositoriesProps';
 import { RentalsRepositoryProps } from '../../repositories/RentalsRepositoryProps';
 
 interface RequestProps {
@@ -14,6 +15,7 @@ export class CreateRentalUseCase {
   constructor(
     @inject('RentalsRepository') private rentalsRepository: RentalsRepositoryProps,
     @inject('DateProvider') private dateProvider: DateProviderProps,
+    @inject('CarsRepository') private carsRepository: CarsRepositoryProps,
   ) {}
 
   public async execute({ user_id, car_id, expected_return_date }: RequestProps) {
@@ -36,6 +38,13 @@ export class CreateRentalUseCase {
     }
 
     const rental = await this.rentalsRepository.create({ user_id, car_id, expected_return_date });
+
+    const updatedAvailableCar = await this.carsRepository.findById(car_id);
+    if (updatedAvailableCar) {
+      updatedAvailableCar.available = false;
+      await this.carsRepository.save(updatedAvailableCar);
+    }
+
     return rental;
   }
 }

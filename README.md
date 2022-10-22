@@ -101,3 +101,20 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 - Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo usuário
 - Não deve ser possível cadastrar um novo aluguel caso já exista um aberto para o mesmo carro
 - O usuário deve estar logado na aplicação
+- Ao realizar um aluguel o status do carro deverá ser alterado para indisponível
+
+### :heavy_check_mark: Devolução de carro
+
+**RF** => Requisitos funcionais
+
+- Deve ser possível realizar a devolução de um carro
+
+**RN** => Regras de negócio
+
+- Se o carro for devolvido com menos de 24 horas devera ser cobrado diária completa
+- Ao realizar a devolução o carro deverá ser liberado para outro aluguel
+- A realizar a devolução o usuário devera ser liberado para outro aluguel
+- Ao realizar a devolução devera ser calculado o total do aluguel
+- Caso o horário de devolução seja superior a previsto na entrega devera ser cobrado multa proporcional aos dias de atraso
+- Caso haja multa devera ser somado ao total do aluguel
+- O usuário deve estar logado na aplicação
