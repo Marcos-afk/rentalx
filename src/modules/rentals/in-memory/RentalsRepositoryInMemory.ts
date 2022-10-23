@@ -22,6 +22,15 @@ export class RentalsRepositoryInMemory implements RentalsRepositoryProps {
     return user;
   }
 
+  async findById(id: string): Promise<Rental | null> {
+    const rental = this.rentals.find(rental => rental.id === id);
+    if (!rental) {
+      return null;
+    }
+
+    return rental;
+  }
+
   async create({ user_id, car_id, expected_return_date }: CreateRentalDtoProps): Promise<Rental> {
     const rental = new Rental();
     Object.assign(rental, {
@@ -32,6 +41,12 @@ export class RentalsRepositoryInMemory implements RentalsRepositoryProps {
     });
 
     this.rentals.push(rental);
+    return rental;
+  }
+
+  async update(rental: Rental): Promise<Rental> {
+    const index = this.rentals.findIndex(r => r.id === rental.id);
+    this.rentals[index] = rental;
     return rental;
   }
 }
