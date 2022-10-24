@@ -43,9 +43,19 @@ describe('Create rental', () => {
   });
 
   it('should not be able to create a new rental if there is another open to the same user', async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: 'Toyota Land Cruiser',
+      daily_rate: 600,
+      license_plate: 'xxx-xxy',
+      fine_amount: 40,
+      brand: 'brand',
+      category_id: '9952ce99-8c27-4114-bdba-4b0a03a3cb61',
+      description: 'Jipe toyota land cruiser',
+    });
+
     const rental = {
       user_id: 'userId',
-      car_id: 'carId',
+      car_id: car.id as string,
       expected_return_date: dayAdd24Yours,
     };
 
@@ -61,9 +71,19 @@ describe('Create rental', () => {
   });
 
   it('should not be able to create a new rental if there is another open to the same car', async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: 'Toyota Land Cruiser',
+      daily_rate: 600,
+      license_plate: 'xxx-xxy',
+      fine_amount: 40,
+      brand: 'brand',
+      category_id: '9952ce99-8c27-4114-bdba-4b0a03a3cb61',
+      description: 'Jipe toyota land cruiser',
+    });
+
     const rental = {
       user_id: 'userId',
-      car_id: 'carId',
+      car_id: car.id as string,
       expected_return_date: dayAdd24Yours,
     };
 
@@ -79,9 +99,19 @@ describe('Create rental', () => {
   });
 
   it('should not be able to create a new rental with invalid return time', async () => {
+    const car = await carsRepositoryInMemory.create({
+      name: 'Toyota Land Cruiser',
+      daily_rate: 600,
+      license_plate: 'xxx-xxy',
+      fine_amount: 40,
+      brand: 'brand',
+      category_id: '9952ce99-8c27-4114-bdba-4b0a03a3cb61',
+      description: 'Jipe toyota land cruiser',
+    });
+
     const rental = {
       user_id: 'userId',
-      car_id: 'carId',
+      car_id: car.id as string,
       expected_return_date: new Date(),
     };
     expect(createRentalUseCase.execute({ ...rental })).rejects.toBeInstanceOf(AppError);
