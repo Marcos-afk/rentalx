@@ -14,6 +14,11 @@
         "tags": ["Category"],
         "summary": "Create a category",
         "description": "Create a new category",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -48,6 +53,11 @@
         "tags": ["Category"],
         "summary": "List all categories",
         "description": "List all categories",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -84,6 +94,11 @@
         "tags": ["Category"],
         "summary": "Import categories",
         "description": "Import categories",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "multipart/form-data": {
@@ -111,6 +126,11 @@
         "tags": ["Specification"],
         "summary": "Create a specification",
         "description": "Create a new specification",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -145,6 +165,11 @@
         "tags": ["Specification"],
         "summary": "List all specifications",
         "description": "List all specifications",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success",
@@ -174,6 +199,332 @@
             }
           }
         }
+      }
+    },
+    "/authenticate-user": {
+      "post": {
+        "tags": ["Authenticate"],
+        "summary": "Create a session",
+        "description": "Create a new session",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "test@gmail.com",
+                  "password": "12345678"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "user": {
+                      "name": "Marcos André",
+                      "email": "test@gmail.com"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email ou senha incorreto"
+          }
+        }
+      }
+    },
+    "/cars": {
+      "post": {
+        "tags": ["Cars"],
+        "summary": "Create a new car",
+        "description": "Create a new car",
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "daily_rate": {
+                    "type": "number"
+                  },
+                  "license_plate": {
+                    "type": "string"
+                  },
+                  "fine_amount": {
+                    "type": "number"
+                  },
+                  "brand": {
+                    "type": "string"
+                  },
+                  "category_id": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Toyota Land Cruiser",
+                  "daily_rate": 600,
+                  "license_plate": "xxx-xxy",
+                  "fine_amount": 40,
+                  "brand": "brand",
+                  "category_id": "9952ce99-8c27-4114-bdba-4b0a03a3cb61",
+                  "description": "Jipe toyota land cruiser"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "daily_rate": {
+                      "type": "number"
+                    },
+                    "license_plate": {
+                      "type": "string"
+                    },
+                    "fine_amount": {
+                      "type": "number"
+                    },
+                    "brand": {
+                      "type": "string"
+                    },
+                    "category_id": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    },
+                    "created_at": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "id": "b4bccf69-0106-4926-b097-45b8c2236e6b",
+                    "name": "Toyota Land Cruiser",
+                    "daily_rate": 600,
+                    "license_plate": "xxx-xxy",
+                    "fine_amount": 40,
+                    "brand": "brand",
+                    "category_id": "9952ce99-8c27-4114-bdba-4b0a03a3cb61",
+                    "description": "Jipe toyota land cruiser",
+                    "created_at": "2022-10-24T12:39:08.611Z"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Placa de carro inválida"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Cars"],
+        "summary": "List all  cars",
+        "description": "List all cars",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "daily_rate": {
+                        "type": "number"
+                      },
+                      "license_plate": {
+                        "type": "string"
+                      },
+                      "fine_amount": {
+                        "type": "number"
+                      },
+                      "brand": {
+                        "type": "string"
+                      },
+                      "category_id": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "created_at": {
+                        "type": "string"
+                      }
+                    },
+                    "example": {
+                      "id": "1827f99a-b46d-43e3-a65a-da780fbfa099",
+                      "name": "Toyota Land Cruiser",
+                      "daily_rate": "600",
+                      "available": true,
+                      "license_plate": "xxx-xxy",
+                      "fine_amount": "40",
+                      "brand": "brand",
+                      "category_id": "9952ce99-8c27-4114-bdba-4b0a03a3cb61",
+                      "description": "Jipe toyota land cruiser",
+                      "created_at": "2022-10-21T20:22:10.454Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/cars/{car_id}": {
+      "patch": {
+        "tags": ["Cars"],
+        "summary": "Create car specification",
+        "description": "Create car specification",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "description": "Id of car",
+            "required": true,
+            "example": "ff3e1d51-3230-4b7a-bf19-4939f061d8fa"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "specification_id": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "example": {
+                  "specification_id": ["ff3e1d51-3230-4b7a-bf19-4939f061d8fa"]
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Carro não foi encontrado"
+          }
+        }
+      }
+    },
+    "/cars/uploads/{car_id}": {
+      "patch": {
+        "tags": ["Cars"],
+        "summary": "Upload images",
+        "description": "Upload images",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "car_id",
+            "in": "path",
+            "description": "Id of car",
+            "required": true,
+            "type": "string",
+            "example": "ff3e1d51-3230-4b7a-bf19-4939f061d8fa"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "images": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
