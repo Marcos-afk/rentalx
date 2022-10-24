@@ -29,9 +29,7 @@ export class CreateRentalUseCase {
       throw new AppError('Usuário já possui um aluguel ativo');
     }
 
-    const expectedReturnDateFormat = this.dateProvider.convertToUtc(expected_return_date);
-    const dateNow = this.dateProvider.convertToUtc(new Date());
-    const compareDate = this.dateProvider.compareInHours(dateNow, expectedReturnDateFormat);
+    const compareDate = this.dateProvider.compareInHours(this.dateProvider.dateNow(), expected_return_date);
 
     if (compareDate < 24) {
       throw new AppError('O aluguel deve ter duração mínima de 24 horas');
