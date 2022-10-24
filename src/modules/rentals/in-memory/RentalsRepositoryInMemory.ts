@@ -4,6 +4,10 @@ import { CreateRentalDtoProps, RentalsRepositoryProps } from '../repositories/Re
 export class RentalsRepositoryInMemory implements RentalsRepositoryProps {
   private rentals: Rental[] = [];
 
+  async findByUserId(user_id: string): Promise<Rental[]> {
+    return this.rentals.filter(rental => rental.user_id === user_id);
+  }
+
   async findOpenRentalByCar(car_id: string): Promise<Rental | null> {
     const car = this.rentals.find(rental => rental.car_id === car_id && !rental.end_date);
     if (!car) {

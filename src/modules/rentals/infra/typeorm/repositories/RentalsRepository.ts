@@ -10,6 +10,10 @@ export class RentalsRepository implements RentalsRepositoryProps {
     this.rentals = AppSource.getRepository(Rental);
   }
 
+  async findByUserId(user_id: string): Promise<Rental[]> {
+    return await this.rentals.find({ where: { user_id }, relations: ['car'] });
+  }
+
   async findOpenRentalByCar(car_id: string): Promise<Rental | null> {
     return await this.rentals.findOneBy({ car_id, end_date: IsNull() });
   }

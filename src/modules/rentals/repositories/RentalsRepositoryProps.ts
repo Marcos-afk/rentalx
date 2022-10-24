@@ -7,6 +7,7 @@ export interface CreateRentalDtoProps {
 }
 
 export interface RentalsRepositoryProps {
+  findByUserId(user_id: string): Promise<Rental[]>;
   findOpenRentalByCar(car_id: string): Promise<Rental | null>;
   findOpenRentalByUser(user_id: string): Promise<Rental | null>;
   findById(id: string): Promise<Rental | null>;
