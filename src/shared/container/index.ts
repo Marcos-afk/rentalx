@@ -1,6 +1,8 @@
 import { container } from 'tsyringe';
 import { UsersRepository } from '../../modules/accounts/infra/typeorm/repositories/UsersRepository';
+import { UsersTokensRepository } from '../../modules/accounts/infra/typeorm/repositories/UsersTokensRepository';
 import { UsersRepositoryProps } from '../../modules/accounts/repositories/UsersRepositoryProps';
+import { UsersTokensRepositoryProps } from '../../modules/accounts/repositories/UsersTokensRepositoryProps';
 import { CarsImagesRepository } from '../../modules/cars/infra/typeorm/repositories/CarsImagesRepositoryProps';
 import { CarsRepository } from '../../modules/cars/infra/typeorm/repositories/CarsRepository';
 import { CategoriesRepository } from '../../modules/cars/infra/typeorm/repositories/CategoriesRepository';
@@ -21,3 +23,4 @@ container.registerSingleton<CarsRepositoryProps>('CarsRepository', CarsRepositor
 container.registerSingleton<CarsImagesRepositoryProps>('CarsImagesRepository', CarsImagesRepository);
 container.registerSingleton<DateProviderProps>('DateProvider', DayJsDateProvider);
 container.registerSingleton<RentalsRepositoryProps>('RentalsRepository', RentalsRepository);
+container.registerSingleton<UsersTokensRepositoryProps>('UsersTokensRepository', UsersTokensRepository);

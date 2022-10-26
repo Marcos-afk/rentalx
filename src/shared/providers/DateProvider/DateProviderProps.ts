@@ -3,4 +3,5 @@ export interface DateProviderProps {
   convertToUtc(date: Date): string;
   compareInDays(start_date: Date, end_date: Date): number;
   dateNow(): Date;
+  addDays(days: number): Date;
 }
