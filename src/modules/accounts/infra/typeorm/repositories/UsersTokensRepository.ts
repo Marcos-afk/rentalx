@@ -22,6 +22,10 @@ export class UsersTokensRepository implements UsersTokensRepositoryProps {
     return await this.users_tokens.findOneBy({ user_id, refresh_token });
   }
 
+  async findByRefreshToken(refresh_token: string): Promise<UserTokens | null> {
+    return await this.users_tokens.findOneBy({ refresh_token });
+  }
+
   async deleteToken(user_token: UserTokens): Promise<UserTokens> {
     return await this.users_tokens.remove(user_token);
   }

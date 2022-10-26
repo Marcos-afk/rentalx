@@ -8,14 +8,17 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 - [cors](https://www.npmjs.com/package/cors)
 - [cross-env](https://www.npmjs.com/package/cross-env)
 - [csv-parse](https://www.npmjs.com/package/csv-parse)
+- [dayjs](https://www.npmjs.com/package/dayjs)
 - [dotenv](https://www.npmjs.com/package/dotenv)
 - [docker](https://docs.docker.com/)
 - [docker-compose](https://docs.docker.com/compose/)
 - [express](https://expressjs.com/pt-br/)
 - [express-async-errors](https://www.npmjs.com/package/express-async-errors)
+- [handlebars](https://www.npmjs.com/package/handlebars)
 - [jest](https://jestjs.io/pt-BR/)
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
 - [multer](https://www.npmjs.com/package/multer)
+- [nodemailer](https://www.npmjs.com/package/nodemailer)
 - [nodejs](https://nodejs.org/en/docs/)
 - [supertest](https://www.npmjs.com/package/supertest)
 - [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
@@ -118,3 +121,16 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 - Caso o horário de devolução seja superior a previsto na entrega devera ser cobrado multa proporcional aos dias de atraso
 - Caso haja multa devera ser somado ao total do aluguel
 - O usuário deve estar logado na aplicação
+
+### :heavy_check_mark: Recuperar senha
+
+**RF** => Requisitos funcionais
+
+- O usuário deve conseguir recuperar a senha informando o email
+- O usuário deve receber um email com o passo a passo para a recuperação de senha
+- O usuário deve conseguir inserir uma nova senha
+
+**RN** => Regras de negócio
+
+- O usuário precisa informar uma nova senha
+- o link enviado para a recuperação deve expirar em 3 horas

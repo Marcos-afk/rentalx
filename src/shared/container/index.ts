@@ -15,6 +15,8 @@ import { RentalsRepository } from '../../modules/rentals/infra/typeorm/repositor
 import { RentalsRepositoryProps } from '../../modules/rentals/repositories/RentalsRepositoryProps';
 import { DateProviderProps } from '../providers/DateProvider/DateProviderProps';
 import { DayJsDateProvider } from '../providers/DateProvider/implementations/DayJsDateProvider';
+import { EtherealMailProvider } from '../providers/MailProvider/implementations/EtherealMailProvider';
+import { MailProviderProps } from '../providers/MailProvider/MailProviderProps';
 
 container.registerSingleton<CategoriesRepositoryProps>('CategoriesRepository', CategoriesRepository);
 container.registerSingleton<SpecificationRepositoryProps>('SpecificationRepository', SpecificationRepository);
@@ -24,3 +26,4 @@ container.registerSingleton<CarsImagesRepositoryProps>('CarsImagesRepository', C
 container.registerSingleton<DateProviderProps>('DateProvider', DayJsDateProvider);
 container.registerSingleton<RentalsRepositoryProps>('RentalsRepository', RentalsRepository);
 container.registerSingleton<UsersTokensRepositoryProps>('UsersTokensRepository', UsersTokensRepository);
+container.registerInstance<MailProviderProps>('MailProvider', new EtherealMailProvider());
