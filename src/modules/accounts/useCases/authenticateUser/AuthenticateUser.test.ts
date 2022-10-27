@@ -2,15 +2,27 @@ import { UsersRepositoryInMemory } from '../../in-memory/UsersRepositoryInMemory
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase';
 import { AuthenticateUserUseCase } from './AuthenticateUserUseCase';
 import { AppError } from '../../../../shared/errors/AppError';
+import { DateProviderProps } from '../../../../shared/providers/DateProvider/DateProviderProps';
+import { DayJsDateProvider } from '../../../../shared/providers/DateProvider/implementations/DayJsDateProvider';
+import { UsersTokensRepositoryProps } from '../../repositories/UsersTokensRepositoryProps';
+import { UsersTokensRepositoryInMemory } from '../../in-memory/UsersTokensRepositoryInMemory';
 
 let authenticateUserCase: AuthenticateUserUseCase;
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let createUserUseCase: CreateUserUseCase;
+let dateProvider: DateProviderProps;
+let usersTokensRepositoryInMemory: UsersTokensRepositoryProps;
 
 describe('Authenticate user', () => {
   beforeEach(() => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
-    authenticateUserCase = new AuthenticateUserUseCase(usersRepositoryInMemory);
+    dateProvider = new DayJsDateProvider();
+    usersTokensRepositoryInMemory = new UsersTokensRepositoryInMemory();
+    authenticateUserCase = new AuthenticateUserUseCase(
+      usersRepositoryInMemory,
+      usersTokensRepositoryInMemory,
+      dateProvider,
+    );
     createUserUseCase = new CreateUserUseCase(usersRepositoryInMemory);
   });
 
@@ -31,6 +43,7 @@ describe('Authenticate user', () => {
 
     const response = await authenticateUserCase.execute({ email: user.email, password: user.password });
     expect(response).toHaveProperty('token');
+    expect(response).toHaveProperty('refresh_token');
   });
 
   it('Authenticated failed. User does not exist', async () => {
