@@ -2,7 +2,7 @@ import { verify } from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 import { AppError } from '../../../errors/AppError';
 import auth from '../../../../config/auth';
-import { UsersTokensRepository } from '../../../../modules/accounts/infra/typeorm/repositories/UsersTokensRepository';
+import { UsersRepository } from '../../../../modules/accounts/infra/typeorm/repositories/UsersRepository';
 
 interface TokenPayloadProps {
   sub: string;
@@ -10,7 +10,7 @@ interface TokenPayloadProps {
 
 export const ensureAuthenticated = async (req: Request, res: Response, next: NextFunction) => {
   const authHeader = req.headers.authorization;
-  const usersTokensRepository = new UsersTokensRepository();
+  const usersRepository = new UsersRepository();
   if (!authHeader) {
     throw new AppError('Sem token', 404);
   }
@@ -18,10 +18,10 @@ export const ensureAuthenticated = async (req: Request, res: Response, next: Nex
   const [, token] = authHeader.split(' ');
 
   try {
-    const decodeToken = verify(token, auth.secret_refresh_token as string);
+    const decodeToken = verify(token, auth.secret_token as string);
     const { sub } = decodeToken as TokenPayloadProps;
 
-    const user = await usersTokensRepository.findByUserIdAndRefreshToken(sub, token);
+    const user = await usersRepository.findById(sub);
     if (!user) {
       throw new AppError('Token inválido', 401);
     }
@@ -31,7 +31,9 @@ export const ensureAuthenticated = async (req: Request, res: Response, next: Nex
     };
 
     return next();
-  } catch {
-    throw new AppError('Token inválido', 401);
+  } catch (error) {
+    if (error instanceof Error) {
+      throw new AppError(`Error: ${error.message}`, 401);
+    }
   }
 };

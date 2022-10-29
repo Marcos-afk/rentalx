@@ -40,6 +40,11 @@ export class RefreshTokenUseCase {
       expires_date: this.dateProvider.addDays(auth.expires_in_refresh_token_days),
     });
 
-    return refresh_token;
+    const newToken = sign({}, auth.secret_token as string, {
+      subject: sub,
+      expiresIn: auth.expires_in_token,
+    });
+
+    return { refresh_token, newToken };
   }
 }
