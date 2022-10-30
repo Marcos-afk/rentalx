@@ -16,6 +16,7 @@ import { RentalsRepositoryProps } from '../../modules/rentals/repositories/Renta
 import { DateProviderProps } from '../providers/DateProvider/DateProviderProps';
 import { DayJsDateProvider } from '../providers/DateProvider/implementations/DayJsDateProvider';
 import { EtherealMailProvider } from '../providers/MailProvider/implementations/EtherealMailProvider';
+import { SESMailProvider } from '../providers/MailProvider/implementations/SESMailProvider';
 import { MailProviderProps } from '../providers/MailProvider/MailProviderProps';
 import { LocalStorageProvider } from '../providers/StorageProvider/implementations/LocalStorageProvider';
 import { S3StorageProvider } from '../providers/StorageProvider/implementations/S3StorageProvider';
@@ -29,7 +30,11 @@ container.registerSingleton<CarsImagesRepositoryProps>('CarsImagesRepository', C
 container.registerSingleton<DateProviderProps>('DateProvider', DayJsDateProvider);
 container.registerSingleton<RentalsRepositoryProps>('RentalsRepository', RentalsRepository);
 container.registerSingleton<UsersTokensRepositoryProps>('UsersTokensRepository', UsersTokensRepository);
-container.registerInstance<MailProviderProps>('MailProvider', new EtherealMailProvider());
+
+container.registerInstance<MailProviderProps>(
+  'MailProvider',
+  process.env.MAIL_PROVIDER === 'SES' ? new SESMailProvider() : new EtherealMailProvider(),
+);
 
 container.registerSingleton<StorageProviderProps>(
   'StorageProvider',
