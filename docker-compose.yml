@@ -33,8 +33,10 @@ services:
       - .:/usr/app
     links:
       - database
+      - redis
     depends_on:
       - database
+      - redis
 
 volumes:
   pgdata:
