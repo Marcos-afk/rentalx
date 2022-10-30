@@ -9,6 +9,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from '../../../../swagger.json';
 import { InitializeConnection } from '../typeorm';
 import { AppError } from '../../errors/AppError';
+import { uploadConfig } from '../../../config/upload';
 
 config();
 
@@ -20,6 +21,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(Routes);
+
+app.use('/avatar', express.static(`${uploadConfig.tmpFolder}/avatar`));
+app.use('/cars', express.static(`${uploadConfig.tmpFolder}/cars`));
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {

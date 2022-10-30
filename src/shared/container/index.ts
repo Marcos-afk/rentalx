@@ -17,6 +17,9 @@ import { DateProviderProps } from '../providers/DateProvider/DateProviderProps';
 import { DayJsDateProvider } from '../providers/DateProvider/implementations/DayJsDateProvider';
 import { EtherealMailProvider } from '../providers/MailProvider/implementations/EtherealMailProvider';
 import { MailProviderProps } from '../providers/MailProvider/MailProviderProps';
+import { LocalStorageProvider } from '../providers/StorageProvider/implementations/LocalStorageProvider';
+import { S3StorageProvider } from '../providers/StorageProvider/implementations/S3StorageProvider';
+import { StorageProviderProps } from '../providers/StorageProvider/StorageProviderProps';
 
 container.registerSingleton<CategoriesRepositoryProps>('CategoriesRepository', CategoriesRepository);
 container.registerSingleton<SpecificationRepositoryProps>('SpecificationRepository', SpecificationRepository);
@@ -27,3 +30,8 @@ container.registerSingleton<DateProviderProps>('DateProvider', DayJsDateProvider
 container.registerSingleton<RentalsRepositoryProps>('RentalsRepository', RentalsRepository);
 container.registerSingleton<UsersTokensRepositoryProps>('UsersTokensRepository', UsersTokensRepository);
 container.registerInstance<MailProviderProps>('MailProvider', new EtherealMailProvider());
+
+container.registerSingleton<StorageProviderProps>(
+  'StorageProvider',
+  process.env.STORAGE_DRIVER === 's3' ? S3StorageProvider : LocalStorageProvider,
+);

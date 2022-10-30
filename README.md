@@ -4,7 +4,9 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 
 ## :hammer_and_wrench: Ferramentas
 
+- [aws-sdk](https://www.npmjs.com/package/aws-sdk)
 - [bcryptjs](https://www.npmjs.com/package/bcryptjs)
+- [class-transformer](https://www.npmjs.com/package/class-transformer)
 - [cors](https://www.npmjs.com/package/cors)
 - [cross-env](https://www.npmjs.com/package/cross-env)
 - [csv-parse](https://www.npmjs.com/package/csv-parse)
@@ -17,6 +19,7 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 - [handlebars](https://www.npmjs.com/package/handlebars)
 - [jest](https://jestjs.io/pt-BR/)
 - [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)
+- [mime](https://www.npmjs.com/package/mime)
 - [multer](https://www.npmjs.com/package/multer)
 - [nodemailer](https://www.npmjs.com/package/nodemailer)
 - [nodejs](https://nodejs.org/en/docs/)

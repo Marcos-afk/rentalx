@@ -12,7 +12,7 @@ const createCarController = new CreateCarController();
 const listCarsController = new ListCarsController();
 const createCarSpecificationController = new CreateCarSpecificationController();
 const uploadCarImagesController = new UploadCarImageController();
-const uploadImages = multer(uploadConfig('./tmp/cars'));
+const uploadImages = multer(uploadConfig);
 
 const carsRoutes = Router();
 

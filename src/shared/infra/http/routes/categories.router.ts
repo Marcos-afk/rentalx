@@ -12,7 +12,7 @@ const importCategoryController = new ImportCategoryController();
 
 const categoriesRoutes = Router();
 
-const upload = multer(uploadConfig('./tmp'));
+const upload = multer(uploadConfig);
 
 categoriesRoutes.get('/', listCategoriesController.handle);
 

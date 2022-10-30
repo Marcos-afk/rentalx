@@ -1,6 +1,6 @@
 import { inject, injectable } from 'tsyringe';
 import { AppError } from '../../../../shared/errors/AppError';
-import { deleteFile } from '../../../../utils/file';
+import { StorageProviderProps } from '../../../../shared/providers/StorageProvider/StorageProviderProps';
 import { UsersRepositoryProps } from '../../repositories/UsersRepositoryProps';
 
 interface RequestProps {
@@ -10,7 +10,10 @@ interface RequestProps {
 
 @injectable()
 export class UpdateUserAvatarUseCase {
-  constructor(@inject('UsersRepository') private usersRepository: UsersRepositoryProps) {}
+  constructor(
+    @inject('UsersRepository') private usersRepository: UsersRepositoryProps,
+    @inject('StorageProvider') private storageProvider: StorageProviderProps,
+  ) {}
 
   public async execute({ user_id, avatarFile }: RequestProps) {
     const user = await this.usersRepository.findById(user_id);
@@ -19,8 +22,10 @@ export class UpdateUserAvatarUseCase {
     }
 
     if (user.avatar) {
-      await deleteFile(`./tmp/avatar/${user.avatar}`);
+      await this.storageProvider.delete(user.avatar, 'avatar');
     }
+
+    await this.storageProvider.save(avatarFile, 'avatar');
 
     user.avatar = avatarFile;
 
