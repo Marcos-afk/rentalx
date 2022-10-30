@@ -10,6 +10,7 @@ import swaggerFile from '../../../../swagger.json';
 import { InitializeConnection } from '../typeorm';
 import { AppError } from '../../errors/AppError';
 import { uploadConfig } from '../../../config/upload';
+import { rateLimiter } from './middlewares/rateLimiter';
 
 config();
 
@@ -19,6 +20,7 @@ InitializeConnection();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(rateLimiter);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 app.use(Routes);
 
