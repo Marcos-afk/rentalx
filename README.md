@@ -23,6 +23,8 @@ Projeto principal desenvolvido com o conteúdo estudado ao longo da trilha de No
 - [multer](https://www.npmjs.com/package/multer)
 - [nodemailer](https://www.npmjs.com/package/nodemailer)
 - [nodejs](https://nodejs.org/en/docs/)
+- [rate-limiter-flexible](https://www.npmjs.com/package/rate-limiter-flexible)
+- [redis](https://www.npmjs.com/package/redis)
 - [supertest](https://www.npmjs.com/package/supertest)
 - [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express)
 - [typescript](https://www.typescriptlang.org/)
